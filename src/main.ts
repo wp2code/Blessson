@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import { setupStore } from "@/stores";
 import App from "./App.vue";
 import router from "@/router";
-import Particles from "vue3-particles";
+import Particles from "particles.vue3";
 // 本地SVG图标
 import "virtual:svg-icons-register";
 // 样式

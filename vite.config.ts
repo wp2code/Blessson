@@ -117,6 +117,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     optimizeDeps: {
       include: [
         "vue",
+        "tsparticles",
         "vue-router",
         "pinia",
         "@vueuse/core",

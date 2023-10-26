@@ -11,6 +11,7 @@ const props = defineProps({
       const images = []
       for (let index = 0; index < 11; index++) {
         images.push(new URL(`../../assets/images/liuzixi_${index}.jpg`, import.meta.url))
+        // images.push(new URL(`http://blessson-image.test.upcdn.net/liuzixi_${index}.jpg`))
       }
       return images
     },
@@ -52,7 +53,7 @@ const changeImg = (): void => {
   width: 100%;
   object-fit: scale-down;
   /* 使用动画 */
-  animation: showImg 15s linear infinite;
+  // animation: showImg 15s linear infinite;
 }
 
 /* 创建动画 */

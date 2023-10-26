@@ -19,3 +19,5 @@ interface ImportMeta {
 }
 
 declare module "lodash-es";
+declare module "particles.vue3";
+// declare module "tsparticles-engine";
