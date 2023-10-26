@@ -21,6 +21,7 @@ const pathSrc = path.resolve(__dirname, "src");
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const env = loadEnv(mode, process.cwd());
   return {
+    base: "./",
     resolve: {
       alias: {
         "@": pathSrc,
@@ -41,11 +42,11 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     server: {
       host: "0.0.0.0",
       port: Number(env.VITE_APP_PORT),
-      open: true, // 运行是否自动打开浏览器
+      open: false,
       proxy: {
         // 反向代理解决跨域
         [env.VITE_APP_BASE_API]: {
-          target: "http://localhost:8989", // 本地接口地址 , 后端工程仓库地址：https://gitee.com/youlaiorg/youlai-boot
+          target: "http://liuzixi:1027",
           changeOrigin: true,
           rewrite: (path) =>
             path.replace(new RegExp("^" + env.VITE_APP_BASE_API), ""), // 替换 /dev-api 为 target 接口地址
@@ -59,7 +60,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
         imports: ["vue", "@vueuse/core"],
         eslintrc: {
-          enabled: true,
+          enabled: false,
           filepath: "./.eslintrc-auto-import.json",
           globalsPropValue: true,
         },
@@ -70,8 +71,8 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         ],
         vueTemplate: true,
         // 配置文件生成位置(false:关闭自动生成)
-        // dts: false
-        dts: "src/types/auto-imports.d.ts",
+        dts: false,
+        // dts: "src/types/auto-imports.d.ts",
       }),
 
       Components({
@@ -87,7 +88,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         // 指定自定义组件位置(默认:src/components)
         dirs: ["src/**/components"],
         // 配置文件位置(false:关闭自动生成)
-        // dts: false
+        // dts: false,
         dts: "src/types/components.d.ts",
       }),
 
@@ -112,5 +113,16 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
         ext: ".gz", // 文件类型
       }),
     ],
+    // 预加载项目必需的组件
+    optimizeDeps: {
+      include: [
+        "vue",
+        "vue-router",
+        "pinia",
+        "@vueuse/core",
+        "path-to-regexp",
+        "vue-i18n",
+      ],
+    },
   };
 });

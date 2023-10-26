@@ -5,7 +5,6 @@ const store = createPinia();
 
 // 全局注册 store
 export function setupStore(app: App<Element>) {
-  console.log("createPinia", store);
   app.use(store);
 }
 

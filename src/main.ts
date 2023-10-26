@@ -1,23 +1,19 @@
-import "./assets/main.css";
-
 import { createApp } from "vue";
 import { setupStore } from "@/stores";
 import App from "./App.vue";
-import router from "./router";
+import router from "@/router";
+import Particles from "vue3-particles";
 // 本地SVG图标
 import "virtual:svg-icons-register";
-
 // 样式
 import "element-plus/theme-chalk/dark/css-vars.css";
 import "@/styles/index.scss";
 import "uno.css";
-
-// const store = createPinia();
+import "@/permission";
 const app = createApp(App);
 // 国际化
-import i18n from "@/lang/index";
+// import i18n from "@/lang/index";
 // 全局注册 状态管理(store)
 setupStore(app);
-app.use(router);
-app.use(i18n);
-app.mount("#app");
+app.use(Particles);
+app.use(router).mount("#app");
